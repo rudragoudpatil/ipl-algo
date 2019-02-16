@@ -8,7 +8,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-6" for="email">Tournament start date:</label>
                     <div class="col-sm-6">
-                        <input type="date" class="form-control" id="tournamentStartDate" value="<?php echo $date; ?>" name="tournamentStartDate">
+                        <input type="date" class="form-control" id="tournamentStartDate" value="{{ app.request.get('tournamentStartDate') }}" name="tournamentStartDate">
                     </div>
                 </div>
                 <div class="form-group">
@@ -18,32 +18,15 @@
                 </div>
             </form>
         </div>
+        <div class="col-md-8">
+            <img src="https://i0.wp.com/www.wallpapersbyte.com/wp-content/uploads/2016/04/IPL-2016-Team-Captains-IPL-9-MCC-Spirit-Sign-WallpapersByte-com-1366x768.jpg?resize=620%2C349&ssl=1">
+        </div>
     </div>
 
     <div class="clearfix"></div>
 
     <div class="row">
         <div class="col-sm-10">
-            <h4>Teams & Home Ground</h4>
-            <hr>
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>Team</th>
-                    <th>Home Ground</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% set count = 1 %}
-                {% for key in teams %}
-                <tr>
-                    <td> {{ count }}. {{  key }} </td>
-                    <td> {{ stadiums[key]  }}</td>
-                </tr>
-                    {% set count = count + 1 %}
-                {%  endfor %}
-                <tbody>
-            </table>
             <h4>IPL Schedule</h4>
             <hr>
             <table class="table table-bordered">
@@ -58,7 +41,7 @@
                 <tbody>
                 {%  set count = 1 %}
                 {%  for key in  matches %}
-                <tr>
+                <tr class="">
                     <td>{{ count }}</td>
                     <td>{{  key['date'] }}</td>
                     <td>{{ key['home_team'] }} v/s {{ key['away_team'] }}</td>
@@ -67,6 +50,26 @@
                     {% set count = count + 1 %}
                 {% endfor %}
                 </tbody>
+            </table>
+            <h4>Teams & Home Ground</h4>
+            <hr>
+            <table class="table table-bordered success">
+                <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Home Ground</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% set count = 1 %}
+                {% for key in teams %}
+                    <tr>
+                        <td> {{ count }}. {{  key }} </td>
+                        <td> {{ stadiums[key]  }}</td>
+                    </tr>
+                    {% set count = count + 1 %}
+                {%  endfor %}
+                <tbody>
             </table>
         </div>
     </div>

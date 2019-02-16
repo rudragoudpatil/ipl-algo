@@ -6,9 +6,9 @@ use App\IndianPremierLeague\FixtureGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
-class LuckyController extends AbstractController
+class IPLController extends AbstractController
 {
-    public function number(Request $request)
+    public function match(Request $request)
     {
         // Provide opponents in an array format
         $teams = [
@@ -42,7 +42,6 @@ class LuckyController extends AbstractController
         $matches_home = array();
         $matches_away = array();
 
-//team 0 would be home team
         foreach ($round as $key => $value) {
             foreach ($value as $k ) {
                 $matches_home[] = array(
@@ -53,7 +52,6 @@ class LuckyController extends AbstractController
             }
         }
 
-//team 1 would be home team
         foreach ($round as $key => $value) {
             foreach ($value as $k ) {
                 $matches_away[] = array(
@@ -74,7 +72,7 @@ class LuckyController extends AbstractController
 
         $matches = $roundrobin->setDates($matches, $tournamentStartDate);
 
-        return $this->render('lucky/number.html.twig', [
+        return $this->render('ipl/index.html.twig', [
             'matches' => $matches,
             'teams' => $teams,
             'stadiums' => $stadiums,
